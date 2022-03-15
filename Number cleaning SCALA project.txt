@@ -1,0 +1,35 @@
+class PhoneDirectory(phonenumber: String, country: String)
+{
+  val DialCodes = Map ("Kenya"->"254")
+
+  val code =DialCodes.get(country) .mkString
+ 
+  val output = code + phonenumber.replaceAll("[-+^()\\s+]*","").takeRight(9)
+
+  def clean_number() =
+  {
+    if (output(3) !='7') {
+      println("Invalid number") 
+    }else{
+      println(output)
+    }
+      
+   }
+}
+
+/* We create our collection*/
+ 
+var number1 = new PhoneDirectory("+ (254)-703-434434", "Kenya");
+number1.clean_number()
+
+var number2 = new PhoneDirectory("+254703434434", "Kenya");
+number2.clean_number()
+
+var number3 = new PhoneDirectory("254-703-434434", "Kenya");
+number3.clean_number()
+
+var number4 = new PhoneDirectory("0703434434", "Kenya");
+number4.clean_number()
+
+var number5 = new PhoneDirectory("0703-434434", "Kenya");
+number5.clean_number()
